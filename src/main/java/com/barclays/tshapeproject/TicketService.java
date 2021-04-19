@@ -98,7 +98,14 @@ public class TicketService {
             LOGGER.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage());
         }
+    }
 
+    public void deleteTicket(long id) {
+        try{
+            this.repo.deleteById(id);
+        }catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"invalid id - ticket does not exist" + e.getMessage());
+        }
     }
 
     private TshapeprojectApplication.Status statusEnumFinder(String status){

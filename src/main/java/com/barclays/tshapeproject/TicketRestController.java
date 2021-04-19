@@ -51,6 +51,13 @@ public class TicketRestController {
         return  ResponseEntity.status(HttpStatus.ACCEPTED).body("Ticket edited");
     }
 
+    @DeleteMapping("/deleteTicket/{id}")
+    public ResponseEntity<String>  editTicket(@PathVariable("id") long id){
+        LOGGER.info("delete ticket request received with id: " + id );
+        this.service.deleteTicket(id);
+        return  ResponseEntity.status(HttpStatus.ACCEPTED).body("Ticket deleted");
+    }
+
 
 
 }
