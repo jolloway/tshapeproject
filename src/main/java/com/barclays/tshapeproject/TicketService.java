@@ -7,9 +7,6 @@ import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
@@ -57,9 +54,7 @@ public class TicketService {
             LOGGER.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"INVALID JSON REQUEST");
         }
-
         TshapeprojectApplication.Status statusEnum = statusEnumFinder(jsonMap.get("status").toString());
-
         Tickets tickets = new Tickets(jsonMap.get("author").toString(),jsonMap.get("title").toString(),statusEnum,jsonMap.get("description").toString(), LocalDate.now());
         Object created = this.repo.save(tickets);
         if(created != null ){
@@ -67,7 +62,6 @@ public class TicketService {
         }else{
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "unknown error save failed");
         }
-
     }
 
     public Object editTicket(long id, String field, String value){
@@ -90,12 +84,10 @@ public class TicketService {
                 editedTicket.setLast_edited(LocalDate.now());
 
                 return this.repo.save(editedTicket);
-
             }else{
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"invalid id - ticket does not exist");
             }
         }catch(Exception e){
-            LOGGER.error(e.getMessage());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage());
         }
     }
@@ -116,6 +108,5 @@ public class TicketService {
             case "PENDING":{return  TshapeprojectApplication.Status.PENDING;}
             default: throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"invalid ticket status please enter: DEVELOPMENT , UAT_TESTING , CLOSED , PENDING") ;//throw a web exception ;
         }
-
     }
 }

@@ -31,6 +31,7 @@ public class Tickets {
         this.status = status;
         this.description = description;
         this.last_edited = last_edited;
+
     }
 
     public String getAuthor() {
@@ -47,32 +48,20 @@ public class Tickets {
     public String getDescription() {
         return description;
     }
-    public String getLast_edited(){
-        return last_edited.toString();
-    }
 
-    public Long getId() {
-        return id;
-    }
+
 
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    public void setTitle(String title){
-        this.title = title;
-    }
-
+    public void setTitle(String title){this.title = title; }
     public void setDescription(String description) {
         this.description = description;
     }
-
     public void setStatus(TshapeprojectApplication.Status status) {
         this.status = status;
     }
-
     public void setLast_edited(LocalDate localDate){
         this.last_edited = localDate;
-    }
-
-}
+    }}
