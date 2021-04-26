@@ -1,0 +1,38 @@
+pipeline{
+    agent{
+        docker {
+                image 'maven:3.8.1-jdk-8'
+                label "docker"
+        }
+    }
+    stages{
+
+        stage('Complile){
+            steps{
+                echo "compiling"
+                sh "mvn -version"
+                sh "maven clean -install"
+            }
+        }
+
+        stage('Testing'){
+            steps{
+                echo "Testing"
+                sh "mvn test"
+            }
+        }
+
+        stage('Deployment'){
+            steps{
+                echo "deploy"
+                sh "mvn deploy"
+            }
+        }
+
+    }
+    post {
+        always{
+            cleanWs()
+        }
+    }
+}

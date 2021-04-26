@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>6438d443-0e5f-48d9-bbb7-6d9c7710adb4</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">6438d443-0e5f-48d9-bbb7-6d9c7710adb4.TABLE:TESTDB.PUBLIC.TICKETS</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="280.5" y="83.5" />
+  <SelectedNodes>
+    <node>6438d443-0e5f-48d9-bbb7-6d9c7710adb4.TABLE:TESTDB.PUBLIC.TICKETS</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
