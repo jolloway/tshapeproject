@@ -1,11 +1,38 @@
-node {
-    checkout scm
+pipeline {
+    agent none {
 
-    docker.withRegistry('https://hub.docker.com/repository/docker/jolloway95/tshapeproject/general', 'dockerhub credentials') {
-
-        def customImage = docker.build("my-image:${env.BUILD_ID}")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
     }
+    stages{
+
+        stage('back end'){
+            agent{
+                docker { image 'maven:3.8.1-adoptopenjdk-11' }
+            }
+            steps{
+                echo "compiling"
+                sh "mvn -version"
+                sh "maven clean -install"
+                echo "Testing"
+                sh "mvn test"
+                echo "deploy"
+                sh "mvn package"
+                sh './jenkins/scripts/deliver.sh'
+            }
+        }
+
+        stage('Frontend'){
+           agent {
+                docker { image 'node:14-alpine' }
+            }
+            steps {
+                sh 'node --version'
+                cd './src/reactapp/tshapeproject/src'
+                echo "install"
+                sh "npm install"
+                echo "start"
+                sh "npm start"
+            }
+           
+        }  
+    }    
 }
