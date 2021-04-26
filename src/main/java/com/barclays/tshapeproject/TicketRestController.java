@@ -10,6 +10,7 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class TicketRestController {
 
     private final TicketService service;
@@ -19,12 +20,14 @@ public class TicketRestController {
         super();
         this.service = service;
     }
+
     @GetMapping("/getAllTickets")
     public ResponseEntity<List<Tickets>> getAllTickets(){
         LOGGER.info("GetAllTickets request received");
         return new ResponseEntity<>(this.service.getAllTickets(),HttpStatus.OK);
 
     }
+
     @GetMapping("/getTicketByID/{id}")
     public ResponseEntity<Tickets>  getTicketById(@PathVariable("id") long id){
 
@@ -32,17 +35,22 @@ public class TicketRestController {
         return new ResponseEntity<>(this.service.getTicketById(id),HttpStatus.ACCEPTED);
     }
 
+
     @GetMapping("/getTicketByStatus/{status}")
     public ResponseEntity<List<Tickets>>  getTicketByStatus(@PathVariable("status") String status){
         LOGGER.info("GetTicketByStatus request received with status: " + status );
         return new ResponseEntity<>(this.service.getTicketsByStatus(status),HttpStatus.OK);
     }
+
+
     @PostMapping("/addTicket")
     public ResponseEntity<String>  addTicket(@RequestBody String ticket){
         LOGGER.info("addTicket request received");
         this.service.addTicket(ticket);
         return  ResponseEntity.status(HttpStatus.CREATED).body("Ticket created");
     }
+
+
     @PatchMapping("/editTicket/{id}/")
     public ResponseEntity<String>  editTicket(@PathVariable("id") long id, @PathParam("field") String field,
                               @PathParam("value")String value){
@@ -50,6 +58,7 @@ public class TicketRestController {
         this.service.editTicket(id, field,value);
         return  ResponseEntity.status(HttpStatus.ACCEPTED).body("Ticket edited");
     }
+
 
     @DeleteMapping("/deleteTicket/{id}")
     public ResponseEntity<String>  deleteTicket(@PathVariable("id") long id){

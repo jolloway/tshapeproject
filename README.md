@@ -7,6 +7,7 @@ https://id.atlassian.com/invite/p/jira-software?id=xqyXiRa5T6GZpedM48Blew
 Risk assessmnet link:
 https://docs.google.com/spreadsheets/d/1PX21RqRny_V5-8_Y6uuwuDJYN09xrSi43_EWhSonwaw/edit?usp=sharing
 Video link:
+https://drive.google.com/drive/folders/11u_CELvd6qS_Lb5cVIzmkVneoZgEZBkv?usp=sharing
 
 
 
@@ -16,5 +17,9 @@ While i managed to complete the intial project, the 20 hour budged was not susta
 The backend had a small amount of time invested in the business logic but as im familiar with maven and basic spring it wasnt to strenous, the main problem came in understanding what was truly necessary and what was added layers and waste such as a DTO. My unfamiliarity with databases was my undoing although i successfully migrated my code from h2 and tested it with the sql database in my aws instance. The initial database setup took much longer than it should due to my unfamiliarity with database management beyond basic sql commands. 
 
 The devops was where the project really started to get away from me while i thought i had the aws part down and functioning well when i tried to deploy jenkins i 2 days trying to get access to port 8080 to being my pipieline despite having configured everything for https http tcp udp on the network secuirtity group, eventually i solved the probelm by allowing all traffic through the security group which still makes little sense. I knew jenkins was working as when i curled from the host i recieved the html of the verification page. 
+
+I then encountered an error where my jenkins cannot recognise that docker, despite being run on a docker container itself and having docker plugins for both common core and pipeline. I curled 
+
+
 I managed to setup the pipeline on my local. The time wasted however meant i never really got much further although i got a good grasp of docker and how the pipeline is set up.
-I fully tested my backend up to about 76% with junit.
+I fully tested my backend up to about 76% with junit. I had to give edit a post mapping so the cors policy would work.

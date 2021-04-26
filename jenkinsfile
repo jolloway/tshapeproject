@@ -1,7 +1,5 @@
 pipeline {
-    agent none {
-
-    }
+    agent none
     stages{
 
         stage('back end'){
@@ -9,6 +7,7 @@ pipeline {
                 docker { image 'maven:3.8.1-adoptopenjdk-11' }
             }
             steps{
+                git 'https://github.com/jolloway/tshapeproject.git'
                 echo "compiling"
                 sh "mvn -version"
                 sh "maven clean -install"

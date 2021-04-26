@@ -49,6 +49,9 @@ public class Tickets {
         return description;
     }
 
+    public Long getId() {
+        return id;
+    }
 
 
     public void setAuthor(String author) {
